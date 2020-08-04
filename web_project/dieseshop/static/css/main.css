@@ -1,0 +1,24 @@
+body {
+   font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+.navbar {
+ border-bottom: 3px solid greenyellow ;
+ background-color:  rgb(211, 76, 76) ;
+}
+
+li:hover {
+   background-color: greenyellow ;
+}
+
+.image{
+   background-image: url(../images/products.png) ;
+   background-size: cover ;
+   background-position: center center ;
+   height: 450px ;
+}
+
+
+
+
+

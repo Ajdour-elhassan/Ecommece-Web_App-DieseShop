@@ -3,20 +3,23 @@ body {
 }
 
 .navbar {
- border-bottom: 3px solid greenyellow ;
- background-color:  rgb(211, 76, 76) ;
+ border-bottom: 3px solid yellow ;
 }
 
 li:hover {
-   background-color: greenyellow ;
+   background-color: yellow ;
+}
+li:active {
+   background-color: aliceblue;
 }
 
+/*
 .image{
    background-image: url(../images/products.png) ;
    background-size: cover ;
    background-position: center center ;
    height: 450px ;
-}
+} */
 
 
 

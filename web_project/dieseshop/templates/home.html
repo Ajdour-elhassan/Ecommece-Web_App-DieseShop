@@ -1,6 +1,14 @@
 {% extends 'base.html' %}
+{% load static %}
+{% block title %}
+Home
+{% endblock %}
 {% block content %}
-
+ <div class="container-fluid">
+   <div class="row">
+     <img style="height:100%; width:60%;" src="{% static '\images\products.png'  %}" alt="">
+   </div>
+ </div>
 
 <div class="container mt-5">
 <div class="card-deck">

@@ -1,6 +1,33 @@
 {% extends 'base.html' %}
+{% load static %}
 {% block content %}
 
-  <p> Product </p>
+
+
+<div class="container py-5">
+  <div class="row mb-5">
+     <div class="col-10 mx-auto col-md-6 my-5">
+        <img src="{{product.image.url}}" alt="">
+     </div>
+     <div class="col-10 mx-auto col-md-6 my-5">
+        <h3 class="product-title"> {{product.name}} </h3>
+           <h5 class="text-info font-italic  mb-2">
+            Price :  <span class="mr-0">$</span> {{product.price}}
+           </h5>
+        <h3 class="product-description"> Discription : </h3>
+        <p class="text-justify product-text">
+          Lorem ipsum dolor sit amet consectetur, adipisicing elit.
+          Nisi temporibus ratione, harum rerum ex quibusdam fugiat
+          dignissimos animi reprehenderit dolorum neque, eum ea vel,
+          minima minus laboriosam velit corporis impedit?
+        </p>
+         {% if product.stock <= 0 %}
+        <p class="text-justify product-text"> Out of the stack </p>
+         {% else %}
+         <p class="btn btn-success btn-active"> Add to Card  </p>
+         {% endif %}
+     </div>
+  </div>
+</div>
 
 {% endblock content %}

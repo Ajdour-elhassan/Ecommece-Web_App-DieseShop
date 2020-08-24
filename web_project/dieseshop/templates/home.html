@@ -6,123 +6,44 @@ Home
 {% block content %}
  <div class="container-fluid">
    <div class="row">
-     <img style="height:100%; width:60%;" src="{% static '\images\products.png'  %}" alt="">
+     <img style="width:100" src="{% static '\images\products.png'  %}" alt="">
    </div>
  </div>
 
-<div class="container mt-5">
-<div class="card-deck">
-  <div class="card">
-    <img src="static\images\necklase.jpg" class="card-img-top" alt="...">
-    <div class="card-body">
-      <h5 class="card-title">Card title</h5>
-      <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+ <div class="py-4">
       <div class="container">
         <div class="row">
-          <div class="col-md-6">
-            <button class="btn btn-success"> 99.99 </button>
-          </div>
-          <div class="col-md-6">
-             <button class="btn btn-danger"> Add to Card </button>
+          <div class="col-10 text-center">
+            <h4 class="text-capitalize font-weight-bold"> All products </h4>
           </div>
         </div>
       </div>
-    </div>
-  </div>
-  <div class="card">
-    <img src="static\images\bag.jpg" class="card-img-top" alt="...">
-    <div class="card-body">
-      <h5 class="card-title">Card title</h5>
-      <p class="card-text">This card has supporting text below as a natural lead-in to additional content.</p>
-      <div class="container">
-        <div class="row">
-          <div class="col-md-6">
-             <button class="btn btn-success">33.99 MAD </button>
-          </div>
-          <div class="col-md-6">
-              <button class="btn btn-danger"> Add to card </button>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="card">
-    <img src="static\images\awsome.jpg" class="card-img-top" alt="...">
-    <div class="card-body">
-      <h5 class="card-title">Card title</h5>
-      <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer content than the first to show that equal height action. </p>
-      <div class="container">
-        <div class="row">
-          <div class="col-md-6">
-              <button class="btn btn-success"> 29,30 MAD</button>
-          </div>
-           <div class="col-md-6">
-              <button class="btn btn-danger"> Add to Card </button>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-</div>
+ </div>
 
-<!-- Second Card -->
-<div class="container mt-5">
-<div class="card-deck">
-  <div class="card">
-    <img src="static\images\necklase.jpg" class="card-img-top" alt="...">
-    <div class="card-body">
-      <h5 class="card-title">Card title</h5>
-      <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-      <div class="container">
-        <div class="row">
-          <div class="col-md-6">
-            <button class="btn btn-success"> 99.99 </button>
-          </div>
-          <div class="col-md-6">
-             <button class="btn btn-danger"> Add to Card </button>
-          </div>
+ <div class="container">
+   <div class="row">
+    {% for product in products %}
+    <div class="col-9 mx-auto col-md-6 col-lg-3">
+      <div class="card mb-5" >
+        <div class="p-4">
+          <a href="{{product.get_url}}">
+            <img src="{{product.image.url}}" class="card-img-top" alt="">
+          </a>
+        </div>
+        <div class="card-footer d-flex justify-content-between" style="background: transparent; border-color : transparent">
+           <p class="font-weight-bold">
+                {{product.name}}
+           </p>
+           <h5 class="text-info font-italic  mb-0">
+              <span class="mr-0">$</span> {{product.price}}
+           </h5>
         </div>
       </div>
     </div>
-  </div>
-  <div class="card">
-    <img src="static\images\bag.jpg" class="card-img-top" alt="...">
-    <div class="card-body">
-      <h5 class="card-title">Card title</h5>
-      <p class="card-text">This card has supporting text below as a natural lead-in to additional content.</p>
-      <div class="container">
-        <div class="row">
-          <div class="col-md-6">
-             <button class="btn btn-success">33.99 MAD </button>
-          </div>
-          <div class="col-md-6">
-              <button class="btn btn-danger"> Add to card </button>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="card">
-    <img src="static\images\awsome.jpg" class="card-img-top" alt="...">
-    <div class="card-body">
-      <h5 class="card-title">Card title</h5>
-      <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer content than the first to show that equal height action. </p>
-      <div class="container">
-        <div class="row">
-          <div class="col-md-6">
-              <button class="btn btn-success"> 29,30 MAD</button>
-          </div>
-           <div class="col-md-6">
-              <button class="btn btn-danger"> Add to Card </button>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-</div>
-<!-- the end of Second Card ! -->
+    {% endfor %}
+   </div>
+ </div>
+
 
 
 {% endblock content %}

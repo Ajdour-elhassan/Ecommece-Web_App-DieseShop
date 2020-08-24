@@ -1,5 +1,30 @@
 body {
    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+ /*  background-color: #B6B6B6; */
+}
+.product-title{
+   font-size: 30px;
+   text-transform: uppercase;
+   letter-spacing: .2em ;
+   padding-top : 15px;
+   padding-bottom: 20px;
+}
+
+.product-description {
+   font-size: 22px;
+   text-transform: uppercase;
+   letter-spacing: .2em ;
+}
+
+.product-text {
+   font-size: 18px;
+   padding-right: 20px;
+}
+.foot {
+   padding: 12px 12px 12px 0px ;
+   color: aliceblue;
+   background-color: black;
+   margin-top: 5px;
 }
 
 .navbar {

@@ -5,5 +5,78 @@ card
 {% endblock %}
 
 {% block content %}
-<p>Cardpage</p>
+<div class="text-center">
+  <div class="text-center product-title">
+   Shopping Card
+  </div>
+</div>
+   <div class="row max-auto">
+     <div class="col-12 col-sm-12 col-md-12 col-lg-6 text-center">
+        <table class="table cart-table">
+           <thead class="cart-thead">
+             <tr>
+               <th colspan="4">
+                 Added Items to Card:
+               </th>
+             </tr>
+           </thead>
+           {% for i in '123' %}
+             <tr>
+                <td>
+                   <a href="">
+                     <img src="{% static 'images\awsome.jpg' %}" width="150" height="150" alt="">
+                   </a>
+                </td>
+                <td class="text-left">
+                 Glaxy s9
+                  <br>
+                  STOCK : 8
+                 <br>
+                  unit price : 100
+                  <br>
+                  Ountity (+10) : 89$
+                </td>
+                 <td>
+                  300$
+                 </td>
+                 <td>
+                   &nbsp;<a href=""><i class="fas fa-plus-circle cart-icon"></i></a>
+                   &nbsp;<a href=""><i class="fas fa-minus-circle cart-icon"></i></a>
+                   &nbsp;<a href=""><i class="fas fa-trash-alt cart-icon"></i></a>
+                 </td>
+             </tr>
+           {% endfor %}
+        </table>
+     </div>
+      <div class="col-12 col-sm-12 col-md-12 col-lg-6 text-center">
+        <table class="table cart-table">
+           <thead class="cart-thead">
+              <tr>
+                <th>
+                   Check Out
+                </th>
+               </tr>
+             </thead>
+                <tbody>
+                   <tr>
+                      <td>
+                        please review your card Items now!
+                      </td>
+                   </tr>
+                   <tr>
+                    <td class="text-left">
+                       your total amount of Items is : <strong>200$</strong>
+                    </td>
+                   </tr>
+                </tbody>
+        </table>
+        <div class="mx-auto">
+           <a href="{% url 'home' %}" style="text-decoration: none;">
+              <div type="button" class="btn btn-lg btn-block bg-success text-white">
+                   Continue Shopping
+              </div>
+            </a>
+         </div>
+      </div>
+   </div>
 {% endblock %}

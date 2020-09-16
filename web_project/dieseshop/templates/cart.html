@@ -1,11 +1,22 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block title %}
-card
-{% endblock %}
+cart
+{% endblock title %}
 
 {% block content %}
+ {% if not cart_items %}
 <div class="text-center">
+   <div class="text-center product-title">
+      Shopping cart is Empty!
+   </div>
+   <br>
+   <p>
+     Click  <a href="{% url 'home' %}"> here </a> to Continue Shopping!
+   </p>
+</div>
+<div class="text-center">
+{% else %}
   <div class="text-center product-title">
    Shopping Card
   </div>
@@ -20,32 +31,39 @@ card
                </th>
              </tr>
            </thead>
-           {% for i in '123' %}
+           {% for cart_item in cart_items %}
              <tr>
                 <td>
-                   <a href="">
-                     <img src="{% static 'images\awsome.jpg' %}" width="150" height="150" alt="">
+                   <a href="cart_item.product.get_url">
+                     <img src="{{cart_item.product.image.url}}" width="150" height="150" alt="">
                    </a>
                 </td>
                 <td class="text-left">
-                 Glaxy s9
+                   Name : {{cart_item.product.name}}
                   <br>
-                  STOCK : 8
-                 <br>
-                  unit price : 100
+                   Stock : {{cart_item.product.id}}
                   <br>
-                  Ountity (+10) : 89$
+                  Unity Price : {{cart_item.product.price}}
+                  <br>
+                  Ountity : {{cart_item.product.price}} * {{cart_item.product.quantity}}
                 </td>
                  <td>
-                  300$
+                  Total : {{cart_item.product.sub_total}}
                  </td>
+                 {% if cart_item.quantity < cart_item.product.stock %}
                  <td>
-                   &nbsp;<a href=""><i class="fas fa-plus-circle cart-icon"></i></a>
-                   &nbsp;<a href=""><i class="fas fa-minus-circle cart-icon"></i></a>
-                   &nbsp;<a href=""><i class="fas fa-trash-alt cart-icon"></i></a>
+                   &nbsp;<a href="{% url 'add_cart' cart_item.product.id %}"><i class="fas fa-plus-circle cart-icon"></i></a>
+                   &nbsp;<a href="{% url 'cart_remove' cart_item.product.id %}"><i class="fas fa-minus-circle cart-icon"></i></a>
+                   &nbsp;<a href="{% url 'remove_cart_product' cart_item.product.id %}"><i class="fas fa-trash-alt cart-icon"></i></a>
                  </td>
+                 {% else %}
+                  <td>
+                   &nbsp;<a href="{% url 'cart_remove' cart_item.product.id %}"><i class="fas fa-minus-circle cart-icon"></i></a>
+                   &nbsp;<a href="{% url 'remove_cart_product' cart_item.product.id %}"><i class="fas fa-trash-alt cart-icon"></i></a>
+                 </td>
+                 {% endif %}
              </tr>
-           {% endfor %}
+             {% endfor %}
         </table>
      </div>
       <div class="col-12 col-sm-12 col-md-12 col-lg-6 text-center">
@@ -65,12 +83,29 @@ card
                    </tr>
                    <tr>
                     <td class="text-left">
-                       your total amount of Items is : <strong>200$</strong>
+                       your total amount of Items is : <strong>{{total}} $</strong>
                     </td>
                    </tr>
                 </tbody>
         </table>
+          <!-- Payment Form -->
         <div class="mx-auto">
+         <form class="" action="" method="POST">
+            {% csrf_token %}
+            <script src="https://checkout.stripe.com/checkout.js"
+            class="stripe-button"
+            data-key="{{ data_key }}"
+            data-amount="{{ stripe_total }}"
+            data-name="Z-Store"
+            data-description="{{ description }}"
+            data-locale="auto"
+            data-currency="usd"
+            data-shipping-address="true"
+            data-billing-address="true"
+            data-zip-code="true">
+            </script>
+          </form>
+            <!-- Payment Form -->
            <a href="{% url 'home' %}" style="text-decoration: none;">
               <div type="button" class="btn btn-lg btn-block bg-success text-white">
                    Continue Shopping
@@ -79,4 +114,5 @@ card
          </div>
       </div>
    </div>
+   {% endif %}
 {% endblock %}

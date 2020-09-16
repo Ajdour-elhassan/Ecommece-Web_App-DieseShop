@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'dieseshop',
+    'stripe',
 ]
 
 MIDDLEWARE = [
@@ -64,6 +65,7 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
                 'dieseshop.context_processors.menu_links' ,
+                'dieseshop.context_processors.counter' ,
             ],
         },
     },
@@ -124,4 +126,6 @@ STATIC_URL = '/static/'
 #Media file to store picture
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
-
+#Strip_payment_Key!
+STRIPE_PUBLISHABLE_KEY="pk_test_51HQpZNJx8qAl0wTeDtONtDxcyiu4vuLopqksUqwZwzWN56PZQk8pVp9wk3UTsmYr0I1zaqpp6x78SNM6pTVUeQ9f00HYkHl7sc"
+STRIPE_SECRET_KEY="sk_test_51HQpZNJx8qAl0wTes9mEzCRUbJtfr1vlzVtXBMKaAKOnpcTv3505JGzGCqybbqE1ce4qsG9YSMClvj3IINSPRFqo00IG5QZAQN"

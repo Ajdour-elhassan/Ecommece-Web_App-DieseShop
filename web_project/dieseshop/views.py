@@ -3,7 +3,11 @@ from . models import Category , Product , Cart , CartItem , Order , OrderItem
 from django.core.exceptions import ObjectDoesNotExist
 import stripe
 from django.conf import settings
-
+from django.contrib.auth.models import Group, User
+from .forms import SignUpForm
+from django.contrib.auth.forms import AuthenticationForm
+from django.contrib.auth import login, authenticate , logout
+from django.contrib.auth.decorators import login_required
 
 
 # we create here category_page with sulg
@@ -124,8 +128,8 @@ def cart_details (request, total=0 , counter=0 , cart_items=None) :
             products.save()
             order_item.delete()
 
-            print('order has been successfully deleted')
-            return redirect('home')
+            print('order has been successfully Done')
+            return redirect('thankyou_page' , order_details.id)
 
       except ObjectDoesNotExist:
         pass # Pass and Ignore it !
@@ -162,3 +166,72 @@ def remove_cart_product (request , product_id) :
     cart_item.delete()
     return redirect ('cart_details')
 
+# ThankYouPage!
+
+def thankyou_page(request , order_id):
+    if order_id :
+      customer_order = get_object_or_404(Order , id=order_id)
+    return render(request , 'thankyoupage.html' , { 'customer_order' : customer_order })
+
+
+#SignInView
+
+def sign_up(request) :
+  if request.method == "POST" :
+     form = SignUpForm(request.POST)
+     if form.is_valid():
+        form.save()
+        username = form.cleaned_data.get('username')
+        signUp_user = User.objects.get(username=username)
+        customer_group = Group.objects.get(name='Customer')
+        customer_group.user_set.add(signUp_user)
+        redirect('signin')
+  else :
+    form = SignUpForm()
+  return render(request, 'signUp.html' , {'form' : form})
+
+# SignInFormView
+
+def sign_in(request) :
+  if request.method == "POST" :
+    form = AuthenticationForm(data=request.POST)
+    if form.is_valid():
+      username = request.POST['username']
+      password = request.POST['password']
+      user = authenticate(username=username , password=password)
+      if user is not None :
+        login(request, user)
+        return redirect('home')
+      else :
+          redirect('signup')
+  else :
+    form = AuthenticationForm()
+
+  return render(request, 'singIn.html' , {'form' : form})
+
+# SingOutView
+
+def sign_out(request):
+  logout(request)
+  return redirect('home')
+
+
+
+# BuildOrderHistoryPage
+
+@login_required(redirect_field_name='next', login_url='signin')
+def dashbord(request):
+    if request.user.is_authenticated:
+        email = str(request.user.email)
+        order_details = Order.objects.filter(emailAddress=email)
+        print(email)
+        print(order_details)
+    return render(request, 'dashbord.html', {'order_details': order_details})
+
+
+# SearchViewFunction
+
+def search(request) :
+  products = Product.objects.filter(name__contains=request.GET['title'])
+  return render(request, 'home.html' , {'products' : products})
+  

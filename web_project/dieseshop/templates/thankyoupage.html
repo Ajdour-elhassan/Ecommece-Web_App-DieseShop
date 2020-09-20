@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+thankyou_page
+{% endblock title %}
+
+{% block content %}
+<div class="text-center">
+   <div class="text-center product-title">
+      Shopping cart is Empty!
+   </div>
+    <div class="text-center product-title">
+      <p> your order number is {{customer_order.id}}</p>
+   </div>
+     <div class="text-center product-title">
+       Your oder has been recevied successfully!
+   </div>
+</div>
+{% endblock %}

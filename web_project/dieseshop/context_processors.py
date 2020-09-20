@@ -1,6 +1,7 @@
 from .models import Category , Cart , CartItem
 from .views import cart_id
 
+# Counter_by_Display_count_IN_Card
 
 def counter(request):
     item_count = 0
@@ -16,6 +17,7 @@ def counter(request):
            item_count = 0
     return dict(item_count = item_count)
 
+# menu_list_by_Categories
 
 def menu_links(request) :
     links = Category.objects.all()

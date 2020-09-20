@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'dieseshop',
     'stripe',
+    'crispy_forms',
 ]
 
 MIDDLEWARE = [
@@ -129,3 +130,5 @@ MEDIA_URL = '/media/'
 #Strip_payment_Key!
 STRIPE_PUBLISHABLE_KEY="pk_test_51HQpZNJx8qAl0wTeDtONtDxcyiu4vuLopqksUqwZwzWN56PZQk8pVp9wk3UTsmYr0I1zaqpp6x78SNM6pTVUeQ9f00HYkHl7sc"
 STRIPE_SECRET_KEY="sk_test_51HQpZNJx8qAl0wTes9mEzCRUbJtfr1vlzVtXBMKaAKOnpcTv3505JGzGCqybbqE1ce4qsG9YSMClvj3IINSPRFqo00IG5QZAQN"
+
+CRISPY_TEMPLATE_PACK = 'bootstrap4'

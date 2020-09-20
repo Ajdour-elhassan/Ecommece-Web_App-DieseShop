@@ -15,3 +15,17 @@
    text-decoration: none;
    color: rgb(78, 190, 228) ;
 }
+
+.stripe-button-el {
+   width : 100% !important ;
+   display: block !important;
+   margin-bottom: 5px;
+   background-color: blue;
+}
+
+.stripe-button-el span {
+    height : 36px;
+    font-family: 'Robot', sans-serif;
+    font-size:  16px !important;
+}
+

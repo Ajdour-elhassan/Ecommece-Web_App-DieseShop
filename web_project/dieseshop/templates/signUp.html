@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block title %}
+ Create New Account
+{% endblock title %}
+
+{% block content %}
+
+
+
+<div class="max-auto">
+    <br>
+    <br>
+    <h1 class="product-text text-center"> Create an Account </h1>
+    {% if not form.is_valid %}
+    <div class="col-9 col-sm-9 col-md-6 col-lg-5 mx-auto bg-light">
+    <h1 class="product-text"> Fill out this form to Sign up </h1>
+    <form method="POST">
+        {% csrf_token %}
+         <p>{{ form | crispy }}</p>
+         <br>
+         <button type="submit" name="button" class="btn btn-secondary"> SignUp </button>
+    </form >
+    </div>
+   {% else %}
+   <div class="container">
+        <br>
+        <div class="product-text text-center">
+            Your account has been successfully Created!
+        </div>
+   </div>
+   {% endif %}
+</div>
+
+{% endblock content %}

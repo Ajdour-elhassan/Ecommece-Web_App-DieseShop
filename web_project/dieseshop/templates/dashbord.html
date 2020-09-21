@@ -11,7 +11,7 @@ Order History
       Order History
     </h1>
     <br>
-    {% if order_details %}
+    {% if order_item %}
       <table class="table table-striped">
         <thead>
           <tr>
@@ -23,7 +23,7 @@ Order History
           </tr>
         </thead>
         <tbody>
-          {% for order in order_details %}
+          {% for order in order_item %}
             <tr>
               <td>{{ order.id }}</td>
               <td>{{ order.created|date:"d M Y" }}</td>

@@ -1,5 +1,5 @@
 from django.shortcuts import render , redirect , get_object_or_404
-from . models import Category , Product , Cart , CartItem , Order , OrderItem
+from . models import Category , Product , Cart , CartItem , Order , OrderItem , Feedback
 from django.core.exceptions import ObjectDoesNotExist
 import stripe
 from django.conf import settings
@@ -29,8 +29,14 @@ def productpage(request, category_slug , product_slug):
     product = Product.objects.get(category__slug=category_slug , slug=product_slug)
   except Exception as e :
     raise e
-  return render(request, 'product.html', {'product' : product })
+  #ReviewMethod 
+  #content should be on textarea["content"] element!
+  if request.method == "POST" and request.user.is_authenticated and request.POST['content'].strip() != '' :
+    Feedback.objects.create(product=product , user=request.user , content=request.POST['content'])
+  reviews = Feedback.objects.filter(product=product)
 
+  return render(request, 'product.html', {'product' : product , 'reviews' : reviews  })
+ 
 
 def cart_id (request) :
   #we create here (cart) if it's not exits !
@@ -223,10 +229,12 @@ def sign_out(request):
 def dashbord(request):
     if request.user.is_authenticated:
         email = str(request.user.email)
-        order_details = Order.objects.filter(emailAddress=email)
+        order_item = Order.objects.filter(emailAddress=email)
         print(email)
-        print(order_details)
-    return render(request, 'dashbord.html', {'order_details': order_details})
+        print(order_item)
+    return render(request, 'dashbord.html', {'order_item': order_item})
+
+
 
 
 # SearchViewFunction
